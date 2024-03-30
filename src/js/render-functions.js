@@ -1,8 +1,17 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 export function displayImages(images, container) {
   container.innerHTML = '';
+
   images.forEach(image => {
-    const card = document.createElement('div');
-    card.classList.add('card');
+    const gallery = document.querySelector('.gallery');
+    const listItem = document.createElement('li');
+    listItem.classList.add('card');
+
+    const link = document.createElement('a');
+    link.classList.add('card-link');
+    link.href = image.largeImageURL;
 
     const img = document.createElement('img');
     img.classList.add('card-image');
@@ -13,27 +22,36 @@ export function displayImages(images, container) {
     info.classList.add('card-info');
 
     const likes = document.createElement('p');
-    likes.textContent = `Likes ${image.likes}`;
+    likes.textContent = `Likes: ${image.likes}`;
 
     const views = document.createElement('p');
-    views.textContent = `Views ${image.views}`;
+    views.textContent = `Views: ${image.views}`;
 
     const comments = document.createElement('p');
-    comments.textContent = `Comments ${image.comments}`;
+    comments.textContent = `Comments: ${image.comments}`;
 
     const downloads = document.createElement('p');
-    downloads.textContent = `Downloads ${image.downloads}`;
+    downloads.textContent = `Downloads: ${image.downloads}`;
 
     info.appendChild(likes);
     info.appendChild(views);
     info.appendChild(comments);
     info.appendChild(downloads);
 
-    card.appendChild(img);
-    card.appendChild(info);
+    link.appendChild(img);
+    listItem.appendChild(link);
+    listItem.appendChild(info);
 
-    container.appendChild(card);
+    gallery.appendChild(listItem);
   });
+  container.appendChild(gallery);
+
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionDelay: 250,
+    captionsData: 'alt',
+  });
+  lightbox.refresh();
 }
 
 export function showAlert(message) {
