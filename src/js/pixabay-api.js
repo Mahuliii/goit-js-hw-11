@@ -1,6 +1,5 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-
 const API_KEY = '43146074-d3428091907388d5fa71ff65d';
 
 export async function fetchImages(searchTerm) {
@@ -20,7 +19,6 @@ export async function fetchImages(searchTerm) {
       throw new Error('Failed to fetch images');
     }
     const data = await response.json();
-
     if (data.hits.length === 0) {
       iziToast.show({
         backgroundColor: 'rgba(239, 64, 64, 1)',

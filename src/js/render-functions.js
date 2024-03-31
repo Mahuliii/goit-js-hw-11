@@ -44,7 +44,6 @@ export function displayImages(images, container) {
 
     gallery.appendChild(listItem);
   });
-  container.appendChild(gallery);
 
   const lightbox = new SimpleLightbox('.gallery a', {
     captions: true,
@@ -52,6 +51,7 @@ export function displayImages(images, container) {
     captionsData: 'alt',
   });
   lightbox.refresh();
+  container.appendChild(gallery);
 }
 
 export function showAlert(message) {

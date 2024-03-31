@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('search-form');
   const searchInput = document.getElementById('search-input');
   const gallery = document.querySelector('.gallery');
+  const loader = document.querySelector('.loader');
+  loader.style.display = 'none';
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -13,19 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
       showAlert('Please enter a search term');
       return;
     }
-
-    gallery.innerHTML = '';
-    const loader = document.createElement('span');
-    loader.classList.add('loader');
     loader.style.display = 'block';
-
+    gallery.innerHTML = '';
     try {
       const images = await fetchImages(searchTerm);
-      displayImages(images, gallery);
-    } catch (error) {
-      showAlert('Failed to fetch images');
-    } finally {
+
       loader.style.display = 'none';
+      if (images.length > 0) {
+        displayImages(images, gallery);
+      } else {
+        showAlert('No matching results found.');
+      }
+    } catch (error) {
+      loader.style.display = 'none';
+      throw new Error('Failed to fetch images');
     }
   });
 });
