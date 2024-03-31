@@ -96,7 +96,7 @@ button:hover {
 
 .card-info {
   display: flex;
-  gap: 48px;
+  gap: 50px;
   padding: 10px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
