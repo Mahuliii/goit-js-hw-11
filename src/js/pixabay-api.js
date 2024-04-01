@@ -32,6 +32,11 @@ export function fetchImages(searchTerm) {
       return data.hits;
     })
     .catch(error => {
+      iziToast.error({
+        title: 'Error',
+        message: 'Failed to fetch images',
+        position: 'topCenter',
+      });
       throw new Error('Failed to fetch images');
     });
 }

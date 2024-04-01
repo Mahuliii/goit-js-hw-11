@@ -17,14 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loader.style.display = 'block';
     gallery.innerHTML = '';
+    searchInput.value = '';
     try {
       const images = await fetchImages(searchTerm);
 
       loader.style.display = 'none';
       if (images.length > 0) {
         displayImages(images, gallery);
-      } else {
-        showAlert('No matching results found.');
       }
     } catch (error) {
       loader.style.display = 'none';
