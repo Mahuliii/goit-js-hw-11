@@ -1,11 +1,9 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-export function displayImages(images, container) {
-  container.innerHTML = '';
-
+export function displayImages(images) {
+  const gallery = document.querySelector('.gallery');
   images.forEach(image => {
-    const gallery = document.querySelector('.gallery');
     const listItem = document.createElement('li');
     listItem.classList.add('card');
 
@@ -41,17 +39,14 @@ export function displayImages(images, container) {
     link.appendChild(img);
     listItem.appendChild(link);
     listItem.appendChild(info);
-
     gallery.appendChild(listItem);
   });
-
   const lightbox = new SimpleLightbox('.gallery a', {
     captions: true,
     captionDelay: 250,
     captionsData: 'alt',
   });
   lightbox.refresh();
-  container.appendChild(gallery);
 }
 
 export function showAlert(message) {

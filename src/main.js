@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (error) {
       loader.style.display = 'none';
-      throw new Error('Failed to fetch images');
+      showAlert('Failed to fetch images');
+      console.error(error);
     }
   });
 });
